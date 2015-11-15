@@ -70,17 +70,18 @@ public class PersonEditDialogController {
      */
     public void setPerson(Person person) {
         this.person = person;
+        if (person.getFirstName() == null)
+        	return;
 
         firstNameField.setText(person.getFirstName());
         lastNameField.setText(person.getLastName());
         streetField.setText(person.getStreet());
-        postalCodeField.setText(Integer.toString(person.getPostalCode()));
+      	postalCodeField.setText(Integer.toString(person.getPostalCode()));
+        	        	
         cityField.setText(person.getCity());
-        birthdayField.setText(DateUtil.format(person.getBirthday()));
+        birthdayField.setText(DateUtil.format(DateUtil.parse(person.getBirthday().toString())));
         birthdayField.setPromptText("dd.mm.yyyy");
         
-    	//PS6 - Calling the addPerson method
-    	PersonDAL.updatePerson(person);  
     }
 
     /**
@@ -105,7 +106,7 @@ public class PersonEditDialogController {
             person.setStreet(streetField.getText());
             person.setPostalCode(Integer.parseInt(postalCodeField.getText()));
             person.setCity(cityField.getText());
-            person.setBirthday(DateUtil.parse(birthdayField.getText()));
+            person.setBirthday((java.sql.Date) DateUtil.getUnformattedDate(DateUtil.parse(birthdayField.getText())));
             okClicked = true;
             dialogStage.close();
         }

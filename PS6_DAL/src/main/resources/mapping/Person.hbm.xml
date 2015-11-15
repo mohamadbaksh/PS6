@@ -23,12 +23,16 @@
 			<column name="Street" length="20" not-null="true" />
 		</property>
 
+		<property name="city" type="string">
+			<column name="city" length="20" not-null="true" />
+		</property>
+		
 		<property name="postalCode" type="integer">
 			<column name="postalCode" length="5" precision="4" not-null="true" />
 		</property>
 		
-<!-- 		<property name="DOB" type="date"> -->
-<!-- 			<column name="DOB" length="7" not-null="true" /> -->
+<!-- 		<property name="Birthday" type="Date"> -->
+<!-- 			<column name="Birthday" lenght="7"  not-null="true" /> -->
 <!-- 		</property> -->
 
 

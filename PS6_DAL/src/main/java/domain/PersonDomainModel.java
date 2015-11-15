@@ -1,7 +1,11 @@
 package domain;
 
 
+import java.sql.Date;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.UUID;
 
 import javafx.beans.property.IntegerProperty;
@@ -16,128 +20,125 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import base.PersonDAL;
 import util.LocalDateAdapter;
 
 
 public class PersonDomainModel {
 
-	private UUID PersonID; 
-    private  String FirstName;
-	private  String MiddleName; 
-	private  String LastName;
-    private  String street;
-    private  int postalCode;
-    private  String city;
-    private  ObjectProperty<LocalDate> DOB;
-	
+	protected UUID PersonID; 
+    protected  String firstName;
+    protected  String middleName; 
+    protected  String lastName;
+    protected  String street;
+    protected  int postalCode;
+    protected  String city;
+    protected  Date birthday;
+
+
 
     /**
      * Default constructor.
      */
-	// UUID 
-	public UUID getPersonID() {
-		return PersonID;
-	}
+    public PersonDomainModel()
+    {
+    	this.PersonID = UUID.randomUUID();
+    	this.postalCode = 0;
+    } 
+//    public PersonDomainModel(UUID FirstName , String firstName, String MiddleName,  String lastName, String street, int postalCode, String city, Date dob){
+//    	this.PersonID = UUID.randomUUID();
+//    	this.firstName = firstName;
+//    	this.middleName = MiddleName;
+//    	this.lastName = lastName;
+//    	this.street = street;
+//    	this.postalCode = postalCode;
+//    	this.city = city;
+//    	this.birthday = dob;
+//    }
 
-	public void setPersonID(UUID personID) {
-		PersonID = personID;
-	}
+	// UUID 
+    public void setPersonID(UUID personID) {
+  		PersonID = personID;
+  	}
+
+  	public void setPostalCode(Integer postalCode) {
+  		this.postalCode = postalCode;
+  	}
+
+  	public UUID getPersonID()
+      {
+      	return this.PersonID;
+      }
 	// FirstName 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        this.FirstName = firstName;
-    }
-
-    public String firstNameProperty() {
-        return FirstName;
+        this.firstName =firstName;
     }
     
     // MiddleName 
     public String getMiddleName() {
-		return MiddleName;
+		return middleName;
 	}
 
 	public void setMiddleName(String middleName) {
-		MiddleName = middleName;
+		middleName = middleName;
 	}
 	// LastName 
 	
-    public String getLastName() {
-        return LastName;
-    }
+	 public String getLastName() {
+	        return lastName;
+	    }
 
-    public void setLastName(String lastName) {
-        this.LastName = lastName;
-    }
+	    public void setLastName(String lastName) {
+	        this.lastName=lastName;
+	    }
 
-    public String lastNameProperty() {
-        return LastName;
-    }
     
     // Street 
 
-    public String getStreet() {
-        return street;
-    }
+	    public String getStreet() {
+	        return street;
+	    }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String streetProperty() {
-        return street;
-    }
+	    public void setStreet(String street) {
+	        this.street=street;
+	    }
     
     // Postal Code 
     
-    public Integer getPostalCode() {
-		return postalCode;
-	}
+	    public int getPostalCode() {
+	        return postalCode;
+	    }
 
-	public void setPostalCode(Integer postalCode) {
-		this.postalCode = postalCode;
-	}
-    
+	    public void setPostalCode(int postalCode) {
+	        this.postalCode=postalCode;
+	    }
+
     // City 
 
-    public String getCity() {
-        return city;
-    }
+	    public String getCity() {
+	        return city;
+	    }
+
+	    public void setCity(String city) {
+	        this.city=city;
+	    }
 
 
-	public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String cityProperty() {
-        return city;
-    }
     
     // DOB 
+	    public Date getBirthday() {
+	        return birthday;
+	    }
 
-    @XmlJavaTypeAdapter(LocalDateAdapter.class)
-    public LocalDate getBirthday() {
-        return DOB.get();
-    }
+	    public void setBirthday(Date birthday) {
+	        this.birthday=birthday;
+	    }
 
-    public void setBirthday(LocalDate birthday) {
-        this.DOB.set(birthday);
-    }
 
-    public ObjectProperty<LocalDate> birthdayProperty() {
-        return DOB;
-    }
-    
-    public ObjectProperty<LocalDate> getDOB() {
-		return DOB;
-	}
-
-	public void setDOB(ObjectProperty<LocalDate> dOB) {
-		DOB = dOB;
-	}
 
 
 }
